@@ -25,8 +25,7 @@
 
 5. In The Current Reward Formula Section:
 
-	5.1. Might be worth defining all variables, equations, and some context for the casual reader audience. E.g. R equation, tau, rho, sigma, alpha, 	lambda left undefined. I had to go back and refresh.  Good reference also might be: https://hydra.iohk.io/job/Cardano/cardano-ledger-	specs/delegationDesignSpec/latest/download-by-type/doc-pdf/delegation_design_spec from
-    	Shelley ledger design spec https://github.com/input-output-hk/cardano-ledger
+	5.1. Might be worth defining all variables, equations, and some context for the casual reader audience. E.g. R equation, tau, rho, sigma, alpha, lambda left undefined. I had to go back and refresh.  Good reference also might be: https://hydra.iohk.io/job/Cardano/cardano-ledger-specs/delegationDesignSpec/latest/download-by-type/doc-pdf/delegation_design_spec from Shelley ledger design spec https://github.com/input-output-hk/cardano-ledger
     
     5.2. In markdown you could render equations directly if you wanted. E.g. try (see raw text)
 	> $$ y=m*x+b $$
