@@ -19,21 +19,23 @@
 
 ## Suggestions
 
-2. In Motivation, third paragraph, perhaps provide a good reference or background definition on the Nakamoto Coefficient.  To be perfectly honest, I have heard the term alot but did not know what it meant - I had to google it.  This looks like a good reference to consider adding perhaps: https://cardano.stackexchange.com/questions/4699/what-is-the-nakamoto-coefficient-of-cardano
+3. In Motivation, third paragraph, perhaps provide a good reference or background definition on the Nakamoto Coefficient.  To be perfectly honest, I have heard the term alot but did not know what it meant - I had to google it.  This looks like a good reference to consider adding perhaps: https://cardano.stackexchange.com/questions/4699/what-is-the-nakamoto-coefficient-of-cardano
 
-3. Maybe add section numbers to each...section for easier referencing (Austin Powers joke unintentional :) 
+4. Maybe add section numbers to each...section for easier referencing (Austin Powers joke unintentional :) 
 
-4. In The Current Reward Formula Section:
+5. In The Current Reward Formula Section:
 
-	4.1. Might be worth defining all variables, equations, and some context for the casual reader audience. E.g. R equation, tau, rho, sigma, alpha, lambda left undefined. I had to go back and refresh.  Good reference also might be: https://hydra.iohk.io/job/Cardano/cardano-ledger-specs/delegationDesignSpec/latest/download-by-type/doc-pdf/delegation_design_spec from
-    Shelley ledger design spec https://github.com/input-output-hk/cardano-ledger
+	5.1. Might be worth defining all variables, equations, and some context for the casual reader audience. E.g. R equation, tau, rho, sigma, alpha, 	lambda left undefined. I had to go back and refresh.  Good reference also might be: https://hydra.iohk.io/job/Cardano/cardano-ledger-	specs/delegationDesignSpec/latest/download-by-type/doc-pdf/delegation_design_spec from
+    	Shelley ledger design spec https://github.com/input-output-hk/cardano-ledger
     
-    4.2. In markdown you could render equations directly if you wanted. E.g. try (see raw text)
+    5.2. In markdown you could render equations directly if you wanted. E.g. try (see raw text)
 	> $$ y=m*x+b $$
 
-5. In The Proposed Reward Formula:
+	(Note: well, looks like this doesn't work in github markdown, only jupyter notebooks...)
 
-	5.1. First sentence, recommend "relative to" in lieu of "based on" to help convey the concept of relative stake limit based on a0, up until saturation.
+6. In The Proposed Reward Formula:
+
+	6.1. First sentence, recommend "relative to" in lieu of "based on" to help convey the concept of relative stake limit based on a0, up until saturation.
 
 	IS NOW:
 	> "The proposed reward retains the function of k for limiting rewards based on stake but repurposes the a0 parameter for enforcing reward limits based on pledge leverage."
@@ -41,14 +43,17 @@
 	RECOMMEND:
 	> "The proposed reward retains the function of k for limiting rewards based on stake but repurposes the a0 parameter for enforcing reward limits **relative to** pledge leverage."
 	
-    5.2. Might be a good idea to quantify and expand how much more computationally efficient the equation, might be an underrated huge additional benefit to emphasize? At least on a super high level.
+    6.2. Might be a good idea to quantify and expand how much more computationally efficient the equation, might be an underrated huge additional benefit to emphasize? At least on a super high level.
 	> "The new equation is computationally simple and purposefully does not use logarithms, exponents, or geometric curves"
-	
 
-6. In Recast of a0, recommend "relative to" in lieu of "based on".
+7. In Recast of a0, second sentence, recommend "relative to" in lieu of "based on".
+	IS NOW:
+	> "Pledge leverage establishes a different ‘saturation point’ for each pool based on its pledge."
 
+	RECOMMEND:
+	> "Pledge leverage establishes a different ‘saturation point’ for each pool **relative to** its pledge."
 
-## Thoughtsd
+## Thoughts
 - I like the CIP. 
 	- I support it, with understanding of thorough testing and further reflection. At face value, it just makes plain sense it's better.
 	- love the fair reward scheme and elegant simplicity.
