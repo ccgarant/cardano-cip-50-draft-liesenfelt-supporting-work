@@ -24,7 +24,7 @@ The first questions to ask are, what matters? Why? Who is the beneficiary? Good 
 The following are the key principles and assumptions for pool ranking:
 1. **Decentralization** is the first priority.
 1. Pool Ranking shall be **independent and agnostic to the number of pools** or desired k number of pools decentralization parameter.
-1. Pool Ranking shall be **independent of yeild** because that would automatically knock out smaller pools or less filled pools.
+1. Pool Ranking shall be **independent of yield** because that would automatically knock out smaller pools or less filled pools.
 1. Pool Ranking shall have **no pool size bias** (i.e. saturation size based off pledge) Big pools are treated the same as pools.
 
 
@@ -51,21 +51,21 @@ If all the pools are ranked the same to start, you have to down-rank pools that 
 $$ ranking = performance $$
 
 ### Yield
-In the current reward equation, pool yield is highest for only high pledge or almost fully saturated pools.  That is, only pools "filled" or "almost filled" (read saturated) will have the highest yeild.  
+In the current reward equation, pool yield is highest for only high pledge or almost fully saturated pools.  That is, only pools "filled" or "almost filled" (read saturated) will have the highest yield.  
 
 However, the current "pool size", or saturation, is __*fixed*__ at about 68 million Ada at k=500 (June 2022). It is __*not*__ relative to pledge.
 
 The pool size should not drive ranking because that would put small pools and new comers at a perpetual disadvantage.  It would incentivize private institutions or centralized crowd funding amounts of Ada.  Small pools will surely die, and put decentralization at a disadvantage. 
 
-In the new reward equation, pool reward yeild is relative to the minimum of pledge down payment $\lambda$ times $a0$ leverage factor, total stake delegation $\sigma$, and pool size $1/k$. 
+In the new reward equation, pool reward yield is relative to the minimum of pledge down payment $\lambda$ times $a0$ leverage factor, total stake delegation $\sigma$, and pool size $1/k$. 
 
-So yes, only fully saturated pools will have the highest yeild still, __*but*__ that upper pool size limit is relative to pledge (i.e. the upper limit is no longer fixed at a very high amount).
+So yes, only fully saturated pools will have the highest yield still, __*but*__ that upper pool size limit is relative to pledge (i.e. the upper limit is no longer fixed at a very high amount).
 
-Also, in the new reward equation, if a pool is filled or over-filled (over saturated), then the SPO can put down more pledge to increase the pool size (increase the saturation upper limit), and thus increase their reward size and maximize yeild. (Note: This mechanism will also incentivize pool "group" or multi-pool operators to just run a single pool can keep extending the upper limit.)
+Also, in the new reward equation, if a pool is filled or over-filled (over saturated), then the SPO can put down more pledge to increase the pool size (increase the saturation upper limit), and thus increase their reward size and maximize yield. (Note: This mechanism will also incentivize pool "group" or multi-pool operators to just run a single pool can keep extending the upper limit.)
 
-Therfore, yeild is a fallout of other of other variables and parameters.
+Therefore, yield is a fallout of other of other variables and parameters.
 
-**Conclusion: No size bias, thus no yeild ranking bias** 
+**Conclusion: No size bias, thus no yield ranking bias** 
 
 
 ### Leverage
@@ -99,7 +99,7 @@ Perhaps if a pool can't come up with sufficient Ada to climb the ranks thru more
 
 Rather, a knock-down factor after your pool passes a certain leverage threshold might be fairer.
 
- If your stake is less than half of the a0 pledge leverage factor, you should get full credit.  If you Any more and it starts dragging down your score.
+If your stake is less than half of the a0 pledge leverage factor, you should get full credit.  If you Any more and it starts dragging down your score.
 
 If pools are up-ranked universally only accounting for leverage, or pledge amount, the early pool joiners will always be ranked higher.  
 
@@ -123,25 +123,36 @@ Note: the min of 1 in the leverage portion is to protect from divide by zero imp
 
 
 ### Fee
-A higher fee should count against the pool.  Basically less shared rewards after a first cut, fixed amount is taken by the SPO.  100% pool fee should drop the ranking. 0% pool fees should be a free market choice.  Sybil attack is protected by the new reward equation and pledge.  Fee is now from 0 to 100 percent, or (0.00-1.00).
+A higher fee should down-rank the pool, and instead of a fixed cost fee and margin fee, they should be simplified into one "fee" variable.  
+
+The $fee$ is now from 0 to 100 percent, or (0.00-1.00).
+
+100% pool fee should drop the ranking. 0% pool fees should be the best ranking and a free market choice.  
+
+Sybil attack is protected by the new reward equation and pledge amount.  Zero pledge will yield zero rewards.  A small pledge will have negligible rewards and low ranking.
+
+The fee mechanism will work by a pool performing the following:
+1. set low fees and establish better ranking
+2. gain stake and delegators, approach pledge leverage 50% threshold
+3. raise fees to accumulate more pledge to raise their pool size, avoid levered knock-down factor
+4. collect more ada, sustain of lose delegators 
+5. raise pledge and thus raise pool size, improve the leverage factor
+6. lower fees, get back to good ranking
+7. repeat
 
 **Less fees, better ranking.**
 
 $$ ranking = performance * (1-fee) * min\bigg\{\frac{a0}{(2*leverage)},1.0\bigg\} $$
 
 
-### Margin
-
-
-
 ## Final Equation
 
-A 100% pool would have leverage well under limit, would charge low or 0 fee, would make all it's blocks.
+A 100% ranked pool would have leverage well under limit, would charge low fees, would make all it's blocks.
 
 $$ ranking = performance * (1-fee) * min\bigg\{\frac{a0}{(2*leverage)},1.0\bigg\} $$
 
-## Ranking System
-Levels of ranking.  Multiple pools in a ranking level. A scoring system akin to academic grade scales (e.g. A+, A, A-, B+, B, B-, C+ ... etc., or 100...90...80...0).  Could be a bell curve shape.
+## The Ranking System
+Instead of a ranking system in numerical ascending order (e.g. 1,2,3,...n), it is proposed to have a categorical ranking system akin to academic grade scales (e.g. A+, A, A-, B+, B, B-, C+,...F).  This will most likely be a bell shaped curve, however, the number of pools that can be ranked A+ is unlimited (or should there be a fixed limit?).  There can be many pools with an A+ 100% grade.  It is then up to the delegator to decide the goods and services as well as yield to choose a pool.
 
 **School Grading System** 
 
@@ -162,68 +173,93 @@ Levels of ranking.  Multiple pools in a ranking level. A scoring system akin to 
 | F | 0–59% | 0.0 |
 --- 
 
-Should make it easy(ier) for a ton of pools to earn 100% score.
+This strategy should make it easier for multiple pools to earn 100% A+ score.
 
-Round up floating rank numbers.
+To help promote categories, there should be a round up feature for to be determined amount.
 
-$$ ranking = round_up [ performance / leverage * (1-fee) ] $$
+$$ ranking = round_-up \bigg[performance * (1-fee) * min\bigg\{\frac{a0}{(2*leverage)},1.0 \bigg\} \bigg]$$
 
 **Ranking Categories**
 - performance
 - leverage
-- fees
-- margin
+- fee
 
 **Parameters** 
 - a0
 
-**Ranking System**
-| Category | Good Ranking Incentive | Bad Ranking Disincentive | 
-| --- | --- | ---|
-| performance | -- | -- |
-| leverage | -- | -- |
-| fees | low fees good | high fees bad |
-| margin | -- | -- |
-
 
 ### Transparency
-Pool should be able to see their score for each category.
+Pools should be able to see their score for each category.
 
-Pool should be able to see basically a stop light of colors for their ranking to quickly tell where they need improvement, or the delegator to judge if the deranking hit is a concern to them, to make the decision themselves.
+Pools should be able to see a numerical category ranking to quickly tell where they need improvement, or the delegator to judge if the down-ranking hit is a concern to them, to make the decision themselves.
 
- **Categories**
-Ranking per category
-dark green, light green, yellow, orange, red
-4, 3, 2, 1, 0
+**Ranking System**
 
-or
+The overall ranking system shall be the average of the individual category ranks.
 
-green, yellow, red
-2,1,0
+| Category | Score |
+| --- | --- |
+| Overall Score | B+ (3.2) |
+| Performance | A (3.9) |
+| Leverage | B- (2.7) |
+| Fees | B (3.0) | 
 
 
 ## Additional Considerations
 
-**multi pool operator deranking?** 
-How to tell the group? Most likely a ranking system that should be done by a person, not the protocol. (e.g. ccvault deranks multipool operators).
+**Multi pool operator down-ranking?** 
 
-**pledge not met** 
-Warning or deranking if pledge not met?
+How to determine mathematically a pool "group", or a group of a multi stake pools run by the same operator or entity?  Should these pools be down-ranked?
 
-**weighted equation?** 
+This is most likely only able to be determined by human judgement, and most likely optionally implemented by the service provided. (e.g. eternl down-ranks multipool operators).  
+
+The community will have to "hivemind" flagging multi pool operators.  This should be open source and subject to rebuttals.
+
+**Pledge not met** 
+
+Warning or down-ranking if pledge not met? Not show the pool at all?
+
+**Weighted equation?** 
+
 Does certain ranking categories carry more weight.  For example, in trade studies, certain criteria carry more weight.
 
-### Delisting
+**Delisting**
 What should inhibit listing the stake pools?
-- if pledge is not met?
-- inactive?
+- If pledge is not met?
+- Inactive?
 
-------
+## Summary
+
+The following is the bare minimum new reward stake pool ranking system.
+
+$$ ranking = round_-up \bigg[performance * (1-fee) * min\bigg\{\frac{a0}{(2*leverage)},1.0 \bigg\} \bigg]$$
+
+That takes into account the following categories
+
+**Ranking Categories**
+- performance
+- leverage
+- fee
+
+**Parameters** 
+- a0
+
+Further knock-down or delisting factors will be up to the service provider to provide as additional radio switches to implement at the delegators discretion.  It is advised to implement the following additional categories in a weighted factor function [Ref 2,3].
+
+Additional Considerations:
+- pledge not met
+- inactive
+- multipool
+- yield
+
+$$ new_-ranking = a_1*a_2*a_3*ranking $$
+
+---------------
 
 Ref: 
 1. [Suggestions for improvement #19 ccvault github issue tracker](https://github.com/ccwalletio/tracker/issues/19)
-1. [Acqnotes, NAS System Engineering Manual, Trade Studies](https://www.acqnotes.com/Attachments/NAS%20SYSTEM%20ENGINEERING%20MANUAL.pdf)
-1. [Chapter 4: System Engineering Tools](https://www.eng.auburn.edu/~dbeale/ESMDCourse/Chapter4.htm)
+2. [Acqnotes, NAS System Engineering Manual, Trade Studies](https://www.acqnotes.com/Attachments/NAS%20SYSTEM%20ENGINEERING%20MANUAL.pdf)
+3. [Chapter 4: System Engineering Tools](https://www.eng.auburn.edu/~dbeale/ESMDCourse/Chapter4.htm)
 
 --------------
 
