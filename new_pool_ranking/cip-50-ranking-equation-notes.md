@@ -117,7 +117,7 @@ This reward mechanism will keep pools keeping healthy leverage in line with the 
 
 **Conclusion: More pool leverage over 50% of threshold, worse ranking.** 
 
-$$ ranking = performance * min\bigg\{\frac{a0}{(2*leverage)},1.0\bigg\} $$
+$$ ranking = performance * min\bigg{\frac{a0}{(2*leverage)},1.0\bigg} $$
 
 Note: the min of 1 in the leverage portion is to protect from divide by zero impacts, and put in a nice, even lower limit.
 
@@ -142,7 +142,7 @@ The fee mechanism will work by a pool performing the following:
 
 **Less fees, better ranking.**
 
-$$ ranking = performance * (1-fee) * min\bigg\{\frac{a0}{(2*leverage)},1.0\bigg\} $$
+$$ ranking = performance * (1-fee) * min\left\{\frac{a0}{(2*leverage)},1.0\left\} $$
 
 
 ## Final Equation
