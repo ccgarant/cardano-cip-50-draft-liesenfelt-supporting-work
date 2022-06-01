@@ -2,8 +2,8 @@
 
 Supporting work for Cardano CIP-50 Draft proposed by Mike Liesenfelt, Shelley's Voltaire decentralization update, k-effective work.
 
-- [New Rewards Work]()
-- [New Pool Ranking Work]()
+- [New Rewards Work](https://github.com/ccgarant/cardano-cip-50-draft-liesenfelt-supporting-work/tree/main/new_rewards)
+- [New Pool Ranking Work](https://github.com/ccgarant/cardano-cip-50-draft-liesenfelt-supporting-work/tree/main/new_pool_ranking)
 
 --------------------------
 CIP-50 | Liesenfelt-Shelleys_Voltaire_decentralization_update Notebook
