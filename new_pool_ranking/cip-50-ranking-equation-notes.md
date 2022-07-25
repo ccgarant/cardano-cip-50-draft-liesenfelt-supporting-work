@@ -1,8 +1,6 @@
 # On CIP-50 Leverage-based Pool Ranking System
 
-The recommended [CIP-50](https://github.com/michael-liesenfelt/CIPs/blob/CIP-Liesenfelt-Shelleys_Voltaire_decentralization_update/CIP-Liesenfelt-Shelleys_Voltaire_decentralization_update/README.md) stake pool ranking equation, system, and ethos.  
-
-The following are notes working from first principles to derive the recommended CIP-50 stake pool ranking equation and methodology.  The final results will be recommended to CIP-50.  Notes are based on thoughts between Michael Liesenfelt and Christophe Garant.
+The following are notes working from first principles to derive the recommended [CIP-50](https://github.com/michael-liesenfelt/CIPs/blob/CIP-Liesenfelt-Shelleys_Voltaire_decentralization_update/CIP-Liesenfelt-Shelleys_Voltaire_decentralization_update/README.md) leverage-based stake pool ranking equation and methodology.  The final results will be recommended to CIP-50.  Notes are based on thoughts between Michael Liesenfelt and Christophe Garant.
 
 Author of CIP-50: Michael Liensenfelt | [github](https://github.com/michael-liesenfelt) | [twitter](https://twitter.com/DrLiesenfelt)
 
@@ -13,22 +11,23 @@ Date: July 2022
 
 # On Proper Stake Pool Ranking
 
-To complete the CIP-50 Liesenfelt Fair Reward Equation total picture game theory, it was noted thru community comments that the stake pool ranking system would have to be taken into [consideration](https://github.com/cardano-foundation/CIPs/pull/242#issuecomment-1120710769).  It was a valid point.
+To complete the CIP-50 Liesenfelt Fair Reward Equation total picture game theory, it was noted thru community comments that the stake pool ranking system should be taken into [consideration](https://github.com/cardano-foundation/CIPs/pull/242#issuecomment-1120710769).  It was a valid point.
 
-Therefore, the following is a walk thru in pursuit of a fair and simple stake pool ranking equation from a leverage-based approach.  Stake pools will be referred herein as "pools" for short.
+Therefore, the following is a walk thru in pursuit of a fair and simple stake pool ranking equation from a decentralization, leverage-based approach.  Stake pools will be referred herein as "pools" for short.
 
+## Principles and Assumptions
 
-## Principles and Assumptions:
 The first questions to ask are, what matters? Why? Who is the beneficiary? Good for who? What should be included? Excluded?
 
 The following are the key principles and assumptions for pool ranking:
 1. **Decentralization** is the first priority.
-1. Pool Ranking shall be **independent and agnostic to the number of pools**, or desired k-parameter number of pools.
-1. Pool Ranking shall be **independent of pool yield** because that would automatically knock out smaller pools or less filled pools.
-1. Pool Ranking shall have **no pool size bias** (i.e. saturation size based off pledge) Big pools are treated the same as pools.
+2. **Less leverage** is more desirable.
+1. Pool Ranking shall be **independent and agnostic to the number of pools**.
+1. Pool Ranking shall be **independent of pool yield** because that would automatically knock out smaller pools, early pools, or less filled pools.
+1. Pool Ranking shall have **no pool size bias**. Big pools are treated the same as small pools.
+1. **Performance** matters for delegators. 
 
-
-## Key Variables and Parameters:
+## Key Variables, Parameters, and Definitions
 
 The following are the key variables and parameters for pool ranking per epoch:
 - **performance** : number of assigned blocks minted vs dropped
@@ -38,41 +37,42 @@ The following are the key variables and parameters for pool ranking per epoch:
 - **pool size** : pledge * leverage factor L
 - **fee** : pool flat fee from earned rewards (first cut for SPOs)
 - **margin** : pool percent fee from earned rewards, left over from the fee (second cut for SPOs)
-- **k** : decentralization parameter, number of desired pools, sets max "soft-cap" on pool
+- **k-parameter, k** : decentralization parameter, number of desired pools, sets max "soft-cap" on pool
 
 -------
 ## Ranking Variables
 Assume you start with all pools ranking the same.  How do you "up-rank" and "down-rank" pools based on these principles?
 
 ### Performance Factor
-If all the pools are ranked the same to start, you have to down-rank pools that miss assigned blocks to mint.  At the beginning of every epoch, pools are assigned blocks to mint based on their total stake and a luck factor.  
+If all the pools are ranked the same to start, you have to down-rank pools that miss assigned blocks to mint.  At the beginning of every epoch, pools are assigned blocks to mint based on their total stake and a luck factor.
 
 **Conclusion: performance definitely matters.**
 
-$$ ranking = performance $$
+<p align="center"><img src="equation1-performance.png" width=300></p>
 
 ### Yield Factor
-In the current reward equation, pool yield is highest for only high pledge or almost fully saturated pools.  That is, only pools "filled" or "almost filled" (read saturated) will have the highest yield.  
+In the current reward equation, pool yield is highest for only high pledge or almost fully saturated pools.  That is, only pools "filled" or "almost filled" (read 90-100% saturated) will have the highest yield.
 
 However, the current "pool size", or saturation, is __*fixed*__ at about 68 million Ada at k=500 (July 2022). It is __*not*__ relative to pledge.
 
-The pool size should not drive ranking because that would put small pools and new comers at a perpetual disadvantage.  It would incentivize private institutions or centralized crowd funding amounts of Ada.  Small pools will surely die, and put decentralization at a disadvantage. 
+The pool size should not drive ranking because that would put small pools and new comers at a perpetual disadvantage.  It would incentivize private institutions or centralized crowd funding to amount 68M Ada first, rather than start a small pool first and work for delegation.  Small pools will surely die, and put decentralization at a disadvantage.
 
-In the new reward equation, pool size is determined by the pledge times the pledge leverage factor $L$.  Reward yield is relative to the minimum of either the pledge down payment $\lambda$ times $L$ leverage factor, total stake delegation $\sigma$, or pool size $1/k$.
+In the new reward equation proposed in CIP-50, pool size is determined by the pledge times the pledge leverage factor $L$.  Reward yield is relative to the minimum of either the pledge down payment $\lambda$ times $L$ leverage factor, total stake delegation $\sigma$, or pool size $1/k$.
 
 <p align="center"><img src="equation4-newRewardsEq.png" width=300></p>
 
-So yes, only fully saturated pools will have the highest yield still, __*but*__ that upper pool size limit is relative to pledge (i.e. the upper limit is no longer fixed at a very high amount), making it much fairer.
+In the newly proposed reward equation, yes only fully saturated pools will have the highest yield still, __*but*__ that upper pool size limit is relative to pledge (i.e. the upper limit is no longer fixed at a very high amount), making it much more fair.
 
-Also, in the new reward equation, if a pool is filled or over-filled (over saturated), then the SPO can put down more pledge to increase the pool size (increase the saturation upper limit), and thus increase their reward size and maximize yield. (Note: This mechanism will also incentivize pool "groups" or multi-pool operators to just run a single big pool and keep extending their upper limit.)
+Also, in the new reward equation, if a pool is filled or over-filled (over saturated), then the SPO can put down more pledge to increase the pool size (increase the saturation upper limit), and thus increase their reward size and eventually maximize yield. (Note: This mechanism in theory will also incentivize pool "groups" or multi-pool operators to just run a single big pool and keep extending their pool size upper limit for more rewards.)
 
-Therefore, yield is a fallout of other of other variables and parameters.
+Therefore, yield is a fallout of other of pledge, leverage, external delegation and saturation.  If yeild was purely a metric, only the large full pools would survive, and new early pools would be at a disadvantage, hurting decentralization and biasing new delegators.
 
-**Conclusion: No size bias, thus no yield ranking bias** 
+**Conclusion: No yield ranking bias** 
 
+So if yeild is not a metric, how to you down-rank the pools as they become more saturated, and at what threshold?
 
 ### Leverage Factor
-Leverage is a harsh parameter, but necessary.  
+Leverage is a harsh parameter, but necessary.
 
 For example, should one be able to put down $100 and buy a $68,000,000 dollar house? That's a 0.00015% down payment leverage.  That doesn't seem quite right.
 
@@ -95,7 +95,7 @@ So far, **less leverage, better ranking**
 
 $$ ranking = performance * (1 / leverage) $$
 
-#### Egalitarian Leverage Factor
+#### Introducing Egalitarian Leverage Factor
 
 Is blanket leverage down-ranking necessarily egalitarian?
 
@@ -263,15 +263,3 @@ Ref:
 3. [Chapter 4: System Engineering Tools](https://www.eng.auburn.edu/~dbeale/ESMDCourse/Chapter4.htm)
 
 --------------
-
-
-
-
-
-
-
-
-
-
-
-
