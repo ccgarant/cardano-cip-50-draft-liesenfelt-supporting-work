@@ -74,11 +74,11 @@ So if yeild is not a metric, how to you down-rank the pools as they become more 
 ### Leverage Factor
 Leverage is a harsh parameter, but necessary.
 
-For example, should one be able to put down $100 and buy a $68,000,000 dollar house? That's a 0.00015% down payment leverage.  That doesn't seem quite right.
+For example, should one be able to put down $100 and buy a $68,000,000 dollar house? That's a 0.00015% down payment leverage, or 1:680,000 ratio.  That doesn't seem quite right at all.  But that's possible with the current stake pool incentive scheme.
 
-Should pools be up-ranked for higher leverage?
+Should pools be up-ranked for higher leverage? Probably not.
 
-$$ranking = leverage * performance?$$
+<p align="center"><img src="equation2-leverage.png" width=300></p>
 
 That doesn't seem right.  Pools should probably be down-ranked for larger leverage, and rewarded for lower leverage (just like buying a house and the loan rate).
 
@@ -93,7 +93,7 @@ In the new ranking equation, $L$ would be the CIP-50 pledge leverage factor defi
 
 So far, **less leverage, better ranking**
 
-$$ ranking = performance * (1 / leverage) $$
+<p align="center"><img src="equation2-leverage2.png" width=300></p>
 
 #### Introducing Egalitarian Leverage Factor
 
@@ -109,13 +109,15 @@ If pools are up-ranked universally only accounting for leverage, or pledge amoun
 
 As the pledge leverage factor $L$ decreases over time, this will put a big burden on small pools to come up with much more pledge to compete with bigger pools.
 
-**Egalitarian Pledge Leverage Factor (E.L.F)** 
+**Egalitarian Pledge Leverage Factor** 
 
 A more egalitarian and equal approach is, down-rank if over-levered after a threshold.  Over 50% for the pledge leverage threshold seems fair.
 
-This reward mechanism will incentivize healthy leverage, and thus better sybil attack protection.  Pool ranking incentivised putting down more pledge to increase your pool size, and thus 50% pledge leverage threshold before the ranking knock-down factor applies.
+The Eqalitarian Pledge Leverage Factor (ELF) reward mechanism will incentivize healthy leverage, and thus better sybil attack protection.  Pool ranking incentivised putting down more pledge to increase your pool size, and thus 50% pledge leverage threshold before the ranking knock-down factor applies.
 
-$$ E.L.F = min\bigg\{1,\frac{L*\lambda*\frac{1}{2}}{\sigma}\bigg\} $$
+<p align="center"><img src="equation3-egalitarian-leverage-factor-simple.png" width=250></p>
+
+$$ ELF = min\bigg\{1,\frac{L*\lambda*\frac{1}{2}}{\sigma}\bigg\} $$
 
 **Conclusion: When delegation exceed 50% of the pledge leverage threshold, ranking decreases.** 
 
@@ -128,7 +130,7 @@ The $fee$ is now from 0 to 100 percent, or (0.00-1.00).
 
 100% pool fee should drop the ranking. 0% pool fees should be the best ranking and a free market choice.  
 
-Sybil attack is protected by the new reward equation and pledge amount.  Zero pledge will yield zero rewards.  A small pledge will have negligible rewards and low ranking.
+Sybil attack is protected by the new reward equation and pledge amount, so a zero fee is not an issue for security protection.  Zero pledge will yield zero rewards.  A small pledge will have negligible rewards and low ranking from quickly surpassing the pledge leverage 50% threshold (ELF).
 
 **Less fees, better ranking.**
 
