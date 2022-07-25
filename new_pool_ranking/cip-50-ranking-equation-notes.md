@@ -15,6 +15,7 @@ To complete the CIP-50 Liesenfelt Fair Reward Equation total picture game theory
 
 Therefore, the following is a walk thru in pursuit of a fair and simple stake pool ranking equation from a decentralization, leverage-based approach.  Stake pools will be referred herein as "pools" for short.
 
+------
 ## Principles and Assumptions
 
 The first questions to ask are, what matters? Why? Who is the beneficiary? Good for who? What should be included? Excluded?
@@ -27,6 +28,7 @@ The following are the key principles and assumptions for pool ranking:
 1. Pool Ranking shall have **no pool size bias**. Big pools are treated the same as small pools.
 1. **Performance** matters for delegators. 
 
+------
 ## Key Variables, Parameters, and Definitions
 
 The following are the key variables and parameters for pool ranking per epoch:
@@ -40,17 +42,17 @@ The following are the key variables and parameters for pool ranking per epoch:
 - **k-parameter, k** : decentralization parameter, number of desired pools, sets max "soft-cap" on pool
 
 -------
-## Ranking Variables
+## Ranking Factors
 Assume you start with all pools ranking the same.  How do you "up-rank" and "down-rank" pools based on these principles?
 
-### Performance Factor
+### **Performance Factor**
 If all the pools are ranked the same to start, you have to down-rank pools that miss assigned blocks to mint.  At the beginning of every epoch, pools are assigned blocks to mint based on their total stake and a luck factor.
 
 **Conclusion: performance definitely matters.**
 
 <p align="center"><img src="equation1-performance.png" width=300></p>
 
-### Yield Factor
+### **Yield Factor**
 In the current reward equation, pool yield is highest for only high pledge or almost fully saturated pools.  That is, only pools "filled" or "almost filled" (read 90-100% saturated) will have the highest yield.
 
 However, the current "pool size", or saturation, is __*fixed*__ at about 68 million Ada at k=500 (July 2022). It is __*not*__ relative to pledge.
@@ -71,7 +73,7 @@ Therefore, yield is a fallout of other of pledge, leverage, external delegation 
 
 So if yeild is not a metric, how to you down-rank the pools as they become more saturated, and at what threshold?
 
-### Leverage Factor
+### **Leverage Factor**
 Leverage is a harsh parameter, but necessary.
 
 For example, should one be able to put down $100 and buy a $68,000,000 dollar house? That's a 0.00015% down payment leverage, or 1:680,000 ratio.  That doesn't seem quite right at all.  But that's possible with the current stake pool incentive scheme.
@@ -128,7 +130,7 @@ Pool ranking incentivises building and applying more pledge to increase your poo
 
 <p align="center"><img src="equation4-ranking-wELF.png" width=400></p>
 
-### Fee Factor
+### **Fee Factor**
 A higher fee should down-rank the pool, and instead of a fixed cost fee *__and__* margin fee, they should be simplified into one "fee" variable.  Also, there should be no minimum fee.  
 
 The $fee$ is now from 0 to 100 percent, or (0.00-1.00).
@@ -141,6 +143,7 @@ Sybil attack is protected by the new reward equation and pledge amount, so a zer
 
 **Less fees, better ranking.**
 
+------
 ## Final Equation
 
 A 100% ranked pool would have leverage well under limit, would charge low fees, would make all it's blocks.  Therefore the proposed bareminmum final ranking equation is:
@@ -151,16 +154,7 @@ Or in more detail:
 
 <p align="center"><img src="equation7-ranking-final.png" width=500></p>
 
-### A Pool's Life-Cycle
-A pool's cyclical life-cycle of obtaining higher rank will follow:
-1. Set low fees and establish better ranking, ensure performance is top-notch.
-2. Climb the rankings, gain stake and delegators, approach the pledge leverage 50% threshold.
-3. Raise fees to accumulate more rewards to grow pledge and raise pool size to avoid levered knock-down factor.
-4. Fall in rankings, collect more ada, sustain slow lose of delegators.
-5. Raise the pledge, increase pool size, improve the leverage factor in anticipation of the next growth cycle.
-6. Lower fees, climb rankings, get back to a good ranking (step #1).
-7. Repeat.
-
+------
 ## The Ranking System
 Instead of a ranking system in numerical ascending order (e.g. 1,2,3,...n), it is proposed to have a normalized, equal size categorical ranking system akin to academic grade scales (e.g. A+, A, A-, B+, B, B-, C+,...F).  This will break up the pools into different performing categories or "buckets" of equal sizing (or should it be a bell-curve?).  There can be many pools with an A+ 100% grade, not just one.  It is then up to the delegator to decide the pool's goods and services in the A+ category or yeild to choose a pool.
 
@@ -216,7 +210,18 @@ The overall ranking system shall be the average of the individual category ranks
 | Leverage | B- (2.7) |
 | Fees | B (3.0) | 
 
+--------
+## A Pool's Life-Cycle
+A pool's cyclical life-cycle of obtaining higher rank will follow:
+1. Set low fees and establish better ranking, ensure performance is top-notch.
+2. Climb the rankings, gain stake and delegators, approach the pledge leverage 50% threshold.
+3. Raise fees to accumulate more rewards to grow pledge and raise pool size to avoid levered knock-down factor.
+4. Fall in rankings, collect more ada, sustain slow lose of delegators.
+5. Raise the pledge, increase pool size, improve the leverage factor in anticipation of the next growth cycle.
+6. Lower fees, climb rankings, get back to a good ranking (step #1).
+7. Repeat.
 
+---------
 ## Additional Considerations
 
 **Multi pool operator down-ranking?** 
@@ -240,6 +245,7 @@ What should inhibit listing the stake pools?
 - If pledge is not met?
 - Inactive?
 
+---------
 ## Summary
 
 The following is the bare minimum new reward stake pool ranking system.
