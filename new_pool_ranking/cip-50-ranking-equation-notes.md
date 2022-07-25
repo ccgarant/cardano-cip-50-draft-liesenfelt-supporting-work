@@ -154,59 +154,63 @@ Or in more detail:
 
 
 ## The Ranking System
-Instead of a ranking system in numerical ascending order (e.g. 1,2,3,...n), it is proposed to have a normalized, equal size categorical ranking system akin to academic grade scales (e.g. A+, A, A-, B+, B, B-, C+,...F).  This will break up the pools into different performing categories or "buckets" of equal sizing (or should it be a bell-curve?).  There can be many pools with an A+ 100% grade, not just one.  It is then up to the delegator to decide the pool's goods and services in the A+ category or yeild to choose a pool.
+Instead of a ranking system in numerical ascending order (e.g. 1,2,3,...n) such as is in Daedalus, it is proposed to have a equal sized categorical ranking system akin to academic grade scales (e.g. A+, A, A-, B+, B, B-, C+,...F).  This will break up the pools into different performing categories or "buckets" of equal sizing.  There can be many pools with an A+ 100% grade, not just one.  It is then up to the delegator to decide the pool's goods and services in the A+ category or yeild to choose a pool.
 
-The concept is, at the end of each epoch, normalize the ranking for each factor category. That is, for each pool and each category, divide the category factor by the best performing "max" value.  This will normalize all results.  (E.g. if the top test grade is a 60, this then becomes the "best" A+ grade.)
+At this time, it was decided not to normalize, bell-curve, or use a 6-epoch moving average, because if all the pools are not performing well, etc, they should not by default be A+ when in fact they are B+.  There can be zero A+ pools just as well, however unlikely.
 
-**School Grading System** 
+**Table 1: Pool Grade and Ranking System** 
 
-| Letter Grade | Score | Rank |
+| Grade | Score | Rank |
 | --- | --- | --- |
 | A+ | 100-97% | 4.0 |
-| A   | 93–96%	| 3.9 |
-| A− | 90–92%	| 3.7 |
-| B+ | 87–89% | 3.3 |
-| B | 83–86% |	3.0 |
-| B− | 80–82% | 2.7| 
-| C+ | 77–79% | 2.3 |
-| C | 73–76% | 2.0 |
-| C− | 70–72% | 1.7 |
-| D+ | 67–69% | 1.3 |
-| D | 63–66% | 1.0 |
-| D− | 60–62% | 0.7 |
-| F | 0–59% | 0.0 |
+| A   | 96–93%	| 3.9 |
+| A− | 92–90%	| 3.7 |
+| B+ | 89–87% | 3.3 |
+| B | 86–83% |	3.0 |
+| B− | 82–80% | 2.7| 
+| C+ | 79–77% | 2.3 |
+| C | 76–73% | 2.0 |
+| C− | 72–70% | 1.7 |
+| D+ | 69–67% | 1.3 |
+| D | 66–66% | 1.0 |
+| D− | 62–60% | 0.7 |
+| F | 59-0% | 0.0 |
 --- 
 
-This strategy should make it easier for multiple pools to earn 100% A+ score.
+This strategy should make it easier for multiple pools to earn 100% A+ scores.  At that point, it's up to human action to decide on the best goods and service the stake pool provides competing on the free market.
 
 To help promote categories, there should be a round up feature for to be determined amount.
 
 <p align="center"><img src="equation7-ranking-final.png" width=600></p>
 
-**Ranking Categories**
-- performance
-- leverage
-- fee
+**Ranking Categories**:
+The following are the _minumum_ relevant ranking categories.  Each category's factor shall also be graded according to Table 1.  
+- performance factor
+- leverage factor
+- fee factor
 
-**Parameters** 
-- L
+**Parameters**:
+The following are impacting parameters.
+- pledge leverage, L
+
+The overall pool score shall be the product of the individual category ranks, as the Ranking Equation defines.
+
+Each individual category or factor in the ranking equation should be broken out individually as well.
+
+| Category | Grade | Score | Rank |
+| --- | --- | --- | --- |
+| Overall Score | B+ |  | 3.3 |
+| Performance | A | 96% |3.9 |
+| Leverage | B- | 81% |2.7 |
+| Fees | B | 85% | 3.0 |
 
 
 ### Transparency
-Pools should be able to see their score for each category.
+Pools should be able to see their overall rank score and grade for transparently, along with each category.
 
 Pools should be able to see a numerical category ranking to quickly tell where they need improvement, or for the delegator to judge if the down-ranking hit is a concern to them, to make the human action decision themselves.
 
-**Ranking System**
-
-The overall ranking system shall be the average of the individual category ranks.
-
-| Category | Score |
-| --- | --- |
-| Overall Score | B+ (3.2) |
-| Performance | A (3.9) |
-| Leverage | B- (2.7) |
-| Fees | B (3.0) | 
+In addition, wallets in general should transparently define how pools are ranked, each category's ranking, and additional factors to add onto the ranking system.  Wallets should also provide different ranking "filters" if they would prefer say yield over pledge-leverage, but that is beyond this scope.
 
 
 ## A Pool's Life-Cycle
@@ -218,30 +222,6 @@ A pool's cyclical life-cycle of obtaining higher rank will follow:
 5. Raise the pledge, increase pool size, improve the leverage factor in anticipation of the next growth cycle.
 6. Lower fees, climb rankings, get back to a good ranking (step #1).
 7. Repeat.
-
-
-## Additional Considerations
-
-**Multi pool operator down-ranking?** 
-
-How to determine mathematically a pool "group", or a group of a multi stake pools run by the same operator or entity?  Should these pools be down-ranked?
-
-This is most likely only able to be determined by human judgement, and most likely optionally implemented by the service provided. (e.g. eternl down-ranks multipool operators).  
-
-The community will have to "hivemind" flagging multi pool operators.  This should be open source and subject to rebuttals.
-
-**Pledge not met** 
-
-Warning or down-ranking if pledge not met? Not show the pool at all?
-
-**Weighted equation?** 
-
-Does certain ranking categories carry more weight.  For example, in trade studies, certain criteria carry more weight.
-
-**Delisting**
-What should inhibit listing the stake pools?
-- If pledge is not met?
-- Inactive?
 
 
 ## Summary
@@ -264,13 +244,37 @@ That takes into account the following categories
 
 Further knock-down or delisting factors will be up to the service provider to provide as additional radio switches to implement at the delegators discretion.  It is advised to implement the following additional categories in a weighted factor function [Ref 2,3].
 
-**Additional Considerations**
+
+## Additional Considerations
+
 - yield for delegators (Return On Ada (ROA) or Return on Stake (ROS))
 - pledge not met
 - inactive
 - multipool down-factor
+- normalized, bell-curved, moving average for ranking?
+- AAA, AA, A instead of A+, A, A-?
+
+**Yield**
+
+**Multi pool operator down-ranking?** 
+How to determine mathematically a pool "group", or a group of a multi stake pools run by the same operator or entity?  Should these pools be down-ranked?
+
+This is most likely only able to be determined by human judgement, and most likely optionally implemented by the service provided. (e.g. eternl down-ranks multipool operators).  
+
+The community will have to "hivemind" flagging multi pool operators.  This should be open source and subject to rebuttals.
+
+**Pledge not met** 
+Warning or down-ranking if pledge not met? Not show the pool at all?
+
+**Weighted equation?** 
+Does certain ranking categories carry more weight.  For example, in trade studies, certain criteria carry more weight.
 
 <p align="center"><img src="equation8-ranking-weighted.png" width=600></p>
+
+**Delisting**
+What should inhibit listing the stake pools?
+- If pledge is not met?
+- Inactive?
 
 ---------------
 
