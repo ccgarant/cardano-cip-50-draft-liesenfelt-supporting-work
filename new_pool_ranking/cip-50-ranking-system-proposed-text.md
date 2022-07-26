@@ -4,11 +4,11 @@ Pool ranking scores in wallet browsers have a significant and powerful game theo
 
 When pledge becomes the most important factor for total pool size, lower leverage factors are more desirable. Lists should be sorted by leverage and presented in an ascending order with the lowest leverage pools first.
 
-The following is guidance for what a pool ranking system based on prioritizing pledge leverage should look like at a minimum.
+The following is guidance for what a pool ranking system should be prioritizing pledge and low leverage.
 
 ### Ranking Equation
 
-The recommended ranking equation starts with a highest score of 10. The pools are down-ranked soley based on only leverage and fees factors.
+The recommended ranking equation starts with a highest score of 10. The pools are down-ranked solely based on leverage and fees factors.
 
     //equation
     ranking_score = 10 - leverage_factor_term - fee_factor_term
@@ -22,9 +22,9 @@ The recommended ranking equation starts with a highest score of 10. The pools ar
     - B is 2, has range (0,10), can be tweaked
     - pool_leverage = delegation / pledge
     - pool_stake = pledge + delegation
-    - saturation_stake = pool_size soft-cap (e.g. 68M Ada based on k-parameter)
+    - saturation_stake = pool_size soft-cap (e.g., 68M Ada based on k-parameter)
     - C is 50, has range (0-100) ish to be harsh, can be tweaked
-    - pool_fee_margin is in range (0-100)%
+    - pool_fee_margin is in range (0-100)% (fixed fee + margin combined)
 
 To evaluate rank using the current reward scheme:
 
@@ -38,17 +38,18 @@ To evaluate rank using the current reward scheme:
     fixed_fee_factor = D * (fee-minFee) / stake 
 
     //parameters
-    - D is 50, has range (0,100), can be tweaked 
+    - D is 50, has range (0,100), can be tweaked
+    - fee cannot be less than minFee
 
 ### Ranking System
 
-The pool ranking system will be a descending sorted list of ranking scores, with the highest at the top:
+The pool ranking system will be a descending sorted list of ranking scores, with the highest score at the top:
 
     ranking = sort(ranking_score, order=descending)
 
 The ranking score is intentionally simple and familiar. Pools will be ranked out of a score of 0-10, and "Graded" for ease per below. There can be many pools having the same ranking score.  All wallets should make transparent the knock-down factors that drove the pool's score.
 
-| Grade | Score X/10 |
+| Grade | Score |
 | --- | --- |
 | A | 10-9 |
 | B | 8-7 |
@@ -56,23 +57,24 @@ The ranking score is intentionally simple and familiar. Pools will be ranked out
 | D | 4-3 |
 | F | 2-0 |
 
-### Pool Life-Cycle
+### A Pool's Life-Cycle
 
-A typical pool's life-cycle will emulate a free market of prices based on supply and demand.  Thus, a pool will have a business life-cycle, or choose to sustain healthy operation with moderate fees once established.  This will be healthy free-market dynamics given what stage of life a pool is in, and regulate leverage and fees. Currently, there is market regulation on fees (driving yield), but not leverage.
+A leverage based ranking system will create interesting pool free market business dynamics. It's envisioned a pool will undergo business life-cycles based on price supply and demand (fees) and leverage (pledge raising to grow the business) as described below. Currently, the yield-based pool ranking creates a market based on fees (driving yield), but not leverage.
 
-**Grade A Territory**
+**Grade A Territory- Growth**
 
-1. Start-up: Start with a pledge, low leverage, very low fees, become highly ranked. (Grade A Zone)
+1. Start-up: Start with a pledge "down-payment", very low leverage, very low fees, become highly ranked. (Grade A Zone)
 
-2. Customer Aquisiton: Gain delegation, leverage starts to grow, eventually some rewards are gained. Equivalent to a "sale". (Grade A Zone).
+2. Growth: Gain delegation, leverage starts to grow, eventually some rewards are gained. Equivalent to a "sale" to gain delegators and grow. (Grade A Zone).
 
-**Grade B-C Territory**
+**Grade B-C Territory - Sustainment**
 
-3. Sustainment: Raise fees to a moderate, sustainable operating "happy place" level.  Delegators are happy, even though the pool loses some ranking, that is okay. Prices (fees) are sustained by the pool's demand. Pools can sustain operation here indefinitely if desired by modulating pledge leverage and/or fees.
+3. Sustainment: Raise fees to a moderate, sustainable operating "happy place" level.  Delegators are happy, even though the pool loses some ranking from leverage, that is okay, rewards are healthy. Prices (fees) are sustained by the pool's demand. Pools can sustain operation here indefinitely if desired by modulating pledge leverage and/or fees.
 
-**Grade D-F Territory**
+**Grade D-F Territory - Accumulation**
 
-4. Accumulation: High delegation demand and leverage grows.  Raise fees to gain more rewards and grow pledge, higher fees sustained by demand for some time, delegators start to leave, leverage starts dropping back to healthy levels.  High fees can be sustained to force very low leverage (lose delegators) for a higher ranking.
+4. Accumulation: Given success comes a gauntlet of delegators. As high delegation demand grows, so does high leverage, thus the rankings tanks. A pool will need to raise fees even more to 1) gain more rewards, grow pledge and 2) tank the rankings to deter more delegators.  Higher fees are sustained by demand for some time, but delegators start to leave.  Leverage starts dropping back to healthy levels.  High fees can be sustained to force very low leverage (lose delegators) for a higher ranking (think sports and intentionally tanking for a better draft pick).
 
-5. Reset: Increases pledge, decrease leverage, increase the pool size, lowers fees, climb back to Grade A Territory.
+5. Reset: Increase pool pledge acquired from accumulation or sustainment, decrease leverage, increase the pool size, lowers fees, climb back to Grade A Territory. Repeat.  
 
+With pledge needed to grow pool size and regain better ranking, the business cycle is cyclical indefinitely, until the pool reaches max saturation based on the k-parameter.
