@@ -48,7 +48,7 @@ If all the pools are ranked the same to start, you have to down-rank pools that 
 
 **Conclusion: performance definitely matters.**
 
-<p align="center"><img src="equation1-performance.png" width=300></p>
+<p align="center"><img src="figures/equation1-performance.png" width=300></p>
 
 ### Yield Factor
 In the current reward equation, pool yield is highest for only high pledge or almost fully saturated pools.  That is, only pools "filled" or "almost filled" (read 90-100% saturated) will have the highest yield.
@@ -59,7 +59,7 @@ The pool size should not drive ranking because that would put small pools and ne
 
 In the new reward equation proposed in CIP-50, pool size is determined by the pledge times the pledge leverage factor $L$.  Reward yield is relative to the minimum of either the pledge down payment $\lambda$ times $L$ leverage factor, total stake delegation $\sigma$, or pool size $1/k$.
 
-<p align="center"><img src="equation4-newRewardsEq.png" width=300></p>
+<p align="center"><img src="figures/equation4-newRewardsEq.png" width=300></p>
 
 In the newly proposed reward equation, yes only fully saturated pools will have the highest yield still, __*but*__ that upper pool size limit is relative to pledge (i.e. the upper limit is no longer fixed at a very high amount), making it much more fair.
 
@@ -78,25 +78,25 @@ For example, should one be able to put down $100 and buy a $68,000,000 dollar ho
 
 Should pools be up-ranked for higher leverage? Probably not.
 
-<p align="center"><img src="equation2-leverage-q1.png" width=300></p>
+<p align="center"><img src="figures/equation2-leverage-q1.png" width=300></p>
 
 That doesn't seem right.  Pools should probably be down-ranked for larger leverage, and rewarded for lower leverage (just like buying a house and the loan rate).
 
-<p align="center"><img src="equation2-leverage-q2.png" width=300></p>
+<p align="center"><img src="figures/equation2-leverage-q2.png" width=300></p>
 
 The pool "pledge leverage factor" or $L$ can be defined as the pool size divided by pledge. The relationship is:
 
-<p align="center"><img src="equation2-leverage-factor.png" width=400></p>
+<p align="center"><img src="figures/equation2-leverage-factor.png" width=400></p>
 
 Where:
 
-<p align="center"><img src="equation2-pool-size.png" width=130></p> 
+<p align="center"><img src="figures/equation2-pool-size.png" width=130></p> 
 
 So far, **less leverage, better ranking**
 
 So how do you define pool leverage? A simple definition is your staking delegation divided by pledge.  With a fixed delegation, less pledge is more leverage, and more pledge is less leverage.
 
-<p align="center"><img src="equation2-leverage.png" width=250></p>
+<p align="center"><img src="figures/equation2-leverage.png" width=250></p>
 
 But for a pool just getting started with low pledge and gains delegation popularity quickly, is it fair to tank the pool's ranking?  Gaining delegation fast should be encouraged, giving the pool time to mint blocks, earn Ada rewards, and build more pledge.
 
@@ -118,7 +118,7 @@ As the pledge leverage factor $L$ decreases over time, this will put a huge burd
 
 A more egalitarian and equal approach is an **Egalitarian Leverage Factor (ELF)** that begins to apply a knock-down factor or down-rank pools only if above 50% of their pledge leverage threshold.  If the pool's leverage is below 50%, they get full credit (no knock-down factor).
 
-<p align="center"><img src="equation3-egalitarian-leverage-factor-simple.png" width=250></p>
+<p align="center"><img src="figures/equation3-egalitarian-leverage-factor-simple.png" width=250></p>
 
 The Eqalitarian Pledge Leverage Factor (ELF) reward mechanism will incentivize healthy boot strapping leverage.  But it also enhances growing pledge and thus sybil attack protection.  
 
@@ -126,7 +126,7 @@ Pool ranking incentivises building and applying more pledge to increase your poo
 
 **Conclusion: When delegation exceeds 50% of the pledge leverage threshold, ranking decreases.** 
 
-<p align="center"><img src="equation4-ranking-wELF.png" width=400></p>
+<p align="center"><img src="figures/equation4-ranking-wELF.png" width=400></p>
 
 ### Fee Factor
 A higher fee should down-rank the pool, and instead of a fixed cost fee *__and__* margin fee, they should be simplified into one "fee" variable.  Also, there should be no minimum fee.  
@@ -135,7 +135,7 @@ The $fee$ is now from 0 to 100 percent, or (0.00-1.00).
 
 100% pool fee should drop the ranking. 0% pool fees should be the best ranking and a free market choice.
 
-<p align="center"><img src="equation5-fee-factor.png" width=200></p>
+<p align="center"><img src="figures/equation5-fee-factor.png" width=200></p>
 
 Sybil attack is protected by the new reward equation and pledge amount, so a zero fee is not an issue for security protection.  Zero pledge will yield zero rewards.  A small pledge will have negligible rewards and low ranking from quickly surpassing the pledge leverage 50% threshold (ELF).
 
@@ -146,11 +146,11 @@ Sybil attack is protected by the new reward equation and pledge amount, so a zer
 
 A 100% ranked pool would have leverage well under limit, would charge low fees, would make all it's blocks.  Therefore the proposed bareminmum final ranking equation is:
 
-<p align="center"><img src="equation7-ranking-final-simple.png" width=500></p>
+<p align="center"><img src="figures/equation7-ranking-final-simple.png" width=500></p>
 
 Or in more detail:
 
-<p align="center"><img src="equation7-ranking-final.png" width=500></p>
+<p align="center"><img src="figures/equation7-ranking-final.png" width=500></p>
 
 
 ## The Ranking System
@@ -181,7 +181,7 @@ This strategy should make it easier for multiple pools to earn 100% A+ scores.  
 
 To help promote categories, there should be a round up feature for to be determined amount.
 
-<p align="center"><img src="equation7-ranking-final.png" width=600></p>
+<p align="center"><img src="figures/equation7-ranking-final.png" width=600></p>
 
 **Ranking Categories**:
 The following are the _minumum_ relevant ranking categories.  Each category's factor shall also be graded according to Table 1.  
@@ -278,9 +278,9 @@ A pool's cyclical life-cycle of obtaining higher rank will follow:
 
 The following is the bare minimum new reward stake pool ranking system.
 
-<p align="center"><img src="equation7-ranking-final-simple.png" width=600></p>
+<p align="center"><img src="figures/equation7-ranking-final-simple.png" width=600></p>
 
-<p align="center"><img src="equation7-ranking-final.png" width=600></p>
+<p align="center"><img src="figures/equation7-ranking-final.png" width=600></p>
 
 That takes into account the following categories
 
@@ -319,7 +319,7 @@ Warning or down-ranking if pledge not met? Not show the pool at all?
 **Weighted equation?** 
 Does certain ranking categories carry more weight.  For example, in trade studies, certain criteria carry more weight.
 
-<p align="center"><img src="equation8-ranking-weighted.png" width=600></p>
+<p align="center"><img src="figures/equation8-ranking-weighted.png" width=600></p>
 
 **Delisting**
 What should inhibit listing the stake pools?
