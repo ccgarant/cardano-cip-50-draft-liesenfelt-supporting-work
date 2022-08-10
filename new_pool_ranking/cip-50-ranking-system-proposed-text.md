@@ -26,7 +26,6 @@ The recommended ranking equation starts with the highest score of 10. The pools 
     - saturation_stake = total_live_stake/k (e.g. 68M₳ "soft-cap upper limit")
     - pool_fee_margin is in range (0-100)% (fixed fee + margin combined)
 
-
 To evaluate rank using the current reward scheme:
 
     //current reward scheme only
