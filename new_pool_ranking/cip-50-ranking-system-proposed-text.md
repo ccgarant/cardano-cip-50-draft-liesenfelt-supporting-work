@@ -13,13 +13,13 @@ The recommended ranking equation starts with the highest score of 10. The pools 
 
     //variables
     leverage_factor = 10 * (pool_leverage/L)^A
-    saturation_factor = 2 * (pool_stake*C)/saturation_stake)^B
+    saturation_factor = 2 * (pool_stake/(saturation_stake*C))^B
     fee_factor = D * pool_fee_margin
 
     //parameters
     - A is 2.0, has range (0,10.0), can be tweaked
     - B is 5.0, has range (0,10.0), can be tweaked
-    - C is 1.1, has range (0,2.0), can be tweaked
+    - C is 0.9, has range (0,2.0), can be tweaked
     - D is 50, has range (0-100) ish to be harsh, can be tweaked
     - pool_leverage = delegation / pledge
     - pool_stake = pledge + delegation
@@ -78,4 +78,4 @@ A leverage based ranking system will create interesting pool free market busines
 
 5. Reset: With increased rewards (savings) from accumulation/sustainment, a pool can increase pledge to decrease leverage, increase pool size even more, lowers fees, and climb back to Grade A "Growth" Territory. Repeat.
 
-With needing to grow pledge to grow pool size and regain better ranking, the business cycle is cyclical indefinitely, until the pool reaches max saturation based on the k-parameter.
+With the need to grow pledge to grow pool size and regain better ranking, the business cycle is cyclical indefinitely until the pool reaches max saturation based on the k-parameter.
