@@ -6,14 +6,14 @@ When pledge becomes the most important factor for total pool size, lower leverag
 
 ### Ranking Equation
 
-The recommended ranking equation starts with the highest score of 10. The pools are down-ranked solely based on leverage and fee factors.
+The recommended ranking equation starts with the highest score of 10. The pools are down-ranked solely based on leverage, saturation, and fee factors.
 
     //equation
     ranking_score = 10 - max{ leverage_factor, saturation_factor } - fee_factor
 
     //variables
     leverage_factor = 10 * (pool_leverage/L)^A
-    saturation_factor = 2 * (pool_stake/(saturation_stake*C))^B
+    saturation_factor = 2 * (pool_stake/(saturation_stake * C))^B
     fee_factor = D * pool_fee_margin
 
     //parameters
